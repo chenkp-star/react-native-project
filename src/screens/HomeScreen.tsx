@@ -3,7 +3,6 @@ import { useMemo, useState } from 'react';
 import { Alert, FlatList, SafeAreaView, StyleSheet, Text } from 'react-native';
 import { CategoryFilter } from '../components/CategoryFilter';
 import { DestinationCard } from '../components/DestinationCard';
-import { MapPreview } from '../components/MapPreview';
 import { travelService } from '../services/travelSdkAdapter';
 import { colors } from '../theme/colors';
 import type { Destination, DestinationCategory } from '../types/destination';
@@ -16,7 +15,7 @@ export function HomeScreen() {
   const toggleFavorite = (id: string) => setFavoriteIds((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
   const openDetails = (destination: Destination) => Alert.alert(destination.city, destination.description);
 
-  return <SafeAreaView style={styles.safeArea}><StatusBar style="dark" /><FlatList data={visibleDestinations} keyExtractor={(item) => item.id} contentContainerStyle={styles.content} ListHeaderComponent={<><Text style={styles.eyebrow}>WANDER · 旅行发现</Text><Text style={styles.title}>下一站，去哪里？</Text><Text style={styles.subtitle}>发现适合你的目的地，收藏旅途中的灵感。</Text><MapPreview /><CategoryFilter selected={selectedCategory} onSelect={setSelectedCategory} /><Text style={styles.sectionTitle}>热门目的地</Text></>} renderItem={({ item }) => <DestinationCard destination={item} isFavorite={favoriteIds.includes(item.id)} onToggleFavorite={toggleFavorite} onPress={openDetails} />} ListEmptyComponent={<Text style={styles.empty}>暂时没有匹配的目的地。</Text>} /></SafeAreaView>;
+  return <SafeAreaView style={styles.safeArea}><StatusBar style="dark" /><FlatList data={visibleDestinations} keyExtractor={(item) => item.id} contentContainerStyle={styles.content} ListHeaderComponent={<><Text style={styles.eyebrow}>WANDER · 旅行发现</Text><Text style={styles.title}>下一站，去哪里？</Text><Text style={styles.subtitle}>发现适合你的目的地，收藏旅途中的灵感。</Text><CategoryFilter selected={selectedCategory} onSelect={setSelectedCategory} /><Text style={styles.sectionTitle}>热门目的地</Text></>} renderItem={({ item }) => <DestinationCard destination={item} isFavorite={favoriteIds.includes(item.id)} onToggleFavorite={toggleFavorite} onPress={openDetails} />} ListEmptyComponent={<Text style={styles.empty}>暂时没有匹配的目的地。</Text>} /></SafeAreaView>;
 }
 
 const styles = StyleSheet.create({

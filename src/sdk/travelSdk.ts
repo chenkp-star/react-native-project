@@ -1,4 +1,3 @@
-import type { Region } from 'react-native-maps';
 import { destinations } from '../data/destinations';
 import type { Destination } from '../types/destination';
 
@@ -8,9 +7,6 @@ class TravelSdk {
     return destinations;
   }
 
-  getDefaultMapRegion(): Region {
-    return { latitude: 35.0116, longitude: 135.7681, latitudeDelta: 0.08, longitudeDelta: 0.08 };
-  }
 }
 
 export const travelSdk = new TravelSdk();
